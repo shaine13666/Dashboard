@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { RouterModule } from '@angular/router';
     MatListModule,
     MatDividerModule,
     MatButtonModule,
+    MatMenuModule,
     RouterModule
   ],
   exports: [
