@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -8,14 +8,15 @@ import { EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() toggleSideBarOn: EventEmitter<any> = new EventEmitter();
+  @Input() sideBarOpen: boolean = false;
+
+  @Output() onChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit(): void { }
 
-  toggleSideBar() {
-    this.toggleSideBarOn.emit();
+  open() {
+    this.onChanged.emit(this.sideBarOpen);
   }
-
 }

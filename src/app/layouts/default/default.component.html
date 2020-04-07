@@ -1,4 +1,4 @@
-<app-header (toggleSideBarOn)="sideBarToggler($event)"></app-header>
+<app-header (onChanged)="toggle($event)"></app-header>
 
 <mat-drawer-container>
     <mat-drawer mode="side" [opened]="sideBarOpen">
