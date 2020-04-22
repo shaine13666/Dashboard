@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { WeatherService } from 'src/app/weather.service';
+import HC_exporting from 'highcharts/modules/exporting';
+HC_exporting(Highcharts);
 
 interface Type {
   value: string;
@@ -14,20 +16,23 @@ interface Type {
 })
 
 export class LineComponent implements OnInit {
-  selectedValue: String;
-  loading = true;
-  Highcharts = Highcharts;
-  chartOptions: any;
-
   types: Type[] = [
     { value: 'line', viewValue: 'line' },
     { value: 'bar', viewValue: 'bar' },
     { value: 'column', viewValue: 'column' }
   ];
+  selectedValue: String = this.types[0].value;
+  loading = true;
+  public Highcharts = Highcharts;
+  public chartOptions: any;
+  public chartObject: any;
+
 
   constructor(private _weather: WeatherService) { }
 
   ngOnInit(): void {
+    this.setChartType(this.selectedValue);
+
     this._weather.dailyForecast()
       .subscribe(
         data => {
@@ -54,6 +59,12 @@ export class LineComponent implements OnInit {
             subtitle: {
               text: 'г. Москва'
             },
+            credits: {
+              enabled: false
+            },
+            exporting: {
+              enabled: true
+            },
             xAxis: {
               categories: weatherDates
             },
@@ -74,5 +85,19 @@ export class LineComponent implements OnInit {
           this.loading = false;
         },
         () => { });
+  }
+
+  setChartType(selectedValue) {
+    const component = this;
+    this.chartOptions = {
+      chart: {
+        type: selectedValue,
+        events: {
+          load: function() {
+            component.chartObject = this;
+          }
+        }
+      }
+    }
   }
 }
