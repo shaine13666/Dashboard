@@ -18,5 +18,10 @@ export class HeaderComponent implements OnInit {
 
   open() {
     this.onChanged.emit(this.sideBarOpen);
+    setTimeout(() => {
+      window.dispatchEvent(
+        new Event('resize')
+      );
+    }, 300)
   }
 }

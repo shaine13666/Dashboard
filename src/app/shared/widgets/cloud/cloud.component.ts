@@ -15,12 +15,11 @@ interface Color {
 }
 
 @Component({
-  selector: 'app-line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.scss']
+  selector: 'app-cloud',
+  templateUrl: './cloud.component.html',
+  styleUrls: ['./cloud.component.scss']
 })
-
-export class LineComponent implements OnInit {
+export class CloudComponent implements OnInit {
   types: Type[] = [
     { value: 'line', viewValue: 'line' },
     { value: 'bar', viewValue: 'bar' },
@@ -28,14 +27,15 @@ export class LineComponent implements OnInit {
   ];
 
   colors: Color[] = [
-    { value: '#8e44ad', viewValue: 'Wisteria' },
-    { value: '#2980b9', viewValue: 'belize Hole' },
-    { value: '#16a085', viewValue: 'Green sea' },
-    { value: '#2c3e50', viewValue: 'Midnight' }
+    { value: '#1abc9c', viewValue: 'Turquoise' },
+    { value: '#2ecc71', viewValue: 'Emerald' },
+    { value: '#3498db', viewValue: 'Petre River' },
+    { value: '#9b59b6', viewValue: 'Amethyst' },
+    { value: '#ecf0f1', viewValue: 'Clouds' }
   ];
 
   selectedColor: any;
-  selectedValue: String = this.types[0].value;
+  selectedValue: String = this.types[2].value;
   loading = true;
   public Highcharts = Highcharts;
   public chartOptions: any;
@@ -50,9 +50,8 @@ export class LineComponent implements OnInit {
     this._weather.dailyForecast()
       .subscribe(
         data => {
-          let temp_max = data['list'].map(data => +(data.main.temp_max - 273.15).toFixed(1));
           let alldates = data['list'].map(data => data.dt);
-
+          let clouds = data['list'].map(data => data.clouds.all);
           let weatherDates = [];
           alldates.forEach((res) => {
             let jsdate = new Date(res * 1000);
@@ -62,10 +61,10 @@ export class LineComponent implements OnInit {
           this.Highcharts = Highcharts;
           this.chartOptions = {
             chart: {
-              type: 'line',
+              type: 'column',
             },
             title: {
-              text: 'Максимальная температура'
+              text: 'Облака'
             },
             subtitle: {
               text: 'г. Москва'
@@ -80,8 +79,8 @@ export class LineComponent implements OnInit {
               categories: weatherDates
             },
             series: [{
-              name: 'Максимальная температура',
-              data: temp_max
+              name: 'Количество облаков',
+              data: clouds
             }],
           };
           this.loading = false;

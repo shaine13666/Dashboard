@@ -18,13 +18,19 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LineComponent } from './widgets/line/line.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { CloudComponent } from './widgets/cloud/cloud.component';
+import { WindComponent } from './widgets/wind/wind.component';
+import { MintemperatureComponent } from './widgets/mintemperature/mintemperature.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    LineComponent
+    LineComponent,
+    CloudComponent,
+    WindComponent,
+    MintemperatureComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +52,10 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    LineComponent
+    LineComponent,
+    CloudComponent,
+    WindComponent,
+    MintemperatureComponent
   ],
   providers: []
 })

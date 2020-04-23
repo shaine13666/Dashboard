@@ -1,3 +1,15 @@
 <div>
-    <app-line></app-line>
+  <h2>Главные настройки</h2>
+  <mat-form-field>
+    <mat-label>Количество графиков</mat-label>
+    <mat-select [(ngModel)]="selectedCount" name="count">
+      <mat-option *ngFor="let count of counts" [value]="count.value">
+        {{count.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <app-line *ngIf="selectedCount"></app-line>
+  <app-mintemperature *ngIf="selectedCount != 1"></app-mintemperature>
+  <app-wind *ngIf="selectedCount != 1 && selectedCount !=2"></app-wind>
+  <app-cloud *ngIf="selectedCount != 1 && selectedCount !=2 && selectedCount !=3"></app-cloud>
 </div>

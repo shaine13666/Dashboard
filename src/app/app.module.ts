@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
 import { WeatherService } from './weather.service';
-import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DefaultModule,
-    HighchartsChartModule
+    DefaultModule
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]

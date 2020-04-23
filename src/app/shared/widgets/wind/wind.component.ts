@@ -15,12 +15,11 @@ interface Color {
 }
 
 @Component({
-  selector: 'app-line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.scss']
+  selector: 'app-wind',
+  templateUrl: './wind.component.html',
+  styleUrls: ['./wind.component.scss']
 })
-
-export class LineComponent implements OnInit {
+export class WindComponent implements OnInit {
   types: Type[] = [
     { value: 'line', viewValue: 'line' },
     { value: 'bar', viewValue: 'bar' },
@@ -28,10 +27,10 @@ export class LineComponent implements OnInit {
   ];
 
   colors: Color[] = [
-    { value: '#8e44ad', viewValue: 'Wisteria' },
-    { value: '#2980b9', viewValue: 'belize Hole' },
-    { value: '#16a085', viewValue: 'Green sea' },
-    { value: '#2c3e50', viewValue: 'Midnight' }
+    { value: '#f1c40f', viewValue: 'Sun flower' },
+    { value: '#e67e22', viewValue: 'Carrot' },
+    { value: '#e74c3c', viewValue: 'Alizarin' },
+    { value: '#95a5a6', viewValue: 'Concrete' }
   ];
 
   selectedColor: any;
@@ -50,9 +49,8 @@ export class LineComponent implements OnInit {
     this._weather.dailyForecast()
       .subscribe(
         data => {
-          let temp_max = data['list'].map(data => +(data.main.temp_max - 273.15).toFixed(1));
           let alldates = data['list'].map(data => data.dt);
-
+          let wind = data['list'].map(data => data.wind.speed);
           let weatherDates = [];
           alldates.forEach((res) => {
             let jsdate = new Date(res * 1000);
@@ -65,7 +63,7 @@ export class LineComponent implements OnInit {
               type: 'line',
             },
             title: {
-              text: 'Максимальная температура'
+              text: 'Скорость ветра'
             },
             subtitle: {
               text: 'г. Москва'
@@ -80,8 +78,8 @@ export class LineComponent implements OnInit {
               categories: weatherDates
             },
             series: [{
-              name: 'Максимальная температура',
-              data: temp_max
+              name: 'Скорость ветра',
+              data: wind
             }],
           };
           this.loading = false;
@@ -117,4 +115,5 @@ export class LineComponent implements OnInit {
       }
     }
   }
+
 }

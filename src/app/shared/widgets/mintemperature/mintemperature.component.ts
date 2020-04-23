@@ -15,12 +15,11 @@ interface Color {
 }
 
 @Component({
-  selector: 'app-line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.scss']
+  selector: 'app-mintemperature',
+  templateUrl: './mintemperature.component.html',
+  styleUrls: ['./mintemperature.component.scss']
 })
-
-export class LineComponent implements OnInit {
+export class MintemperatureComponent implements OnInit {
   types: Type[] = [
     { value: 'line', viewValue: 'line' },
     { value: 'bar', viewValue: 'bar' },
@@ -28,14 +27,14 @@ export class LineComponent implements OnInit {
   ];
 
   colors: Color[] = [
-    { value: '#8e44ad', viewValue: 'Wisteria' },
-    { value: '#2980b9', viewValue: 'belize Hole' },
-    { value: '#16a085', viewValue: 'Green sea' },
-    { value: '#2c3e50', viewValue: 'Midnight' }
+    { value: '#f39c12', viewValue: 'Orange' },
+    { value: '#d35400', viewValue: 'Pumpkin' },
+    { value: '#c0392b', viewValue: 'Pomegranate' },
+    { value: '#bdc3c7', viewValue: 'Silver' }
   ];
 
   selectedColor: any;
-  selectedValue: String = this.types[0].value;
+  selectedValue: String = this.types[1].value;
   loading = true;
   public Highcharts = Highcharts;
   public chartOptions: any;
@@ -50,7 +49,7 @@ export class LineComponent implements OnInit {
     this._weather.dailyForecast()
       .subscribe(
         data => {
-          let temp_max = data['list'].map(data => +(data.main.temp_max - 273.15).toFixed(1));
+          let temp_min = data['list'].map(data => +(data.main.temp_min - 273.15).toFixed(1));
           let alldates = data['list'].map(data => data.dt);
 
           let weatherDates = [];
@@ -62,10 +61,10 @@ export class LineComponent implements OnInit {
           this.Highcharts = Highcharts;
           this.chartOptions = {
             chart: {
-              type: 'line',
+              type: 'bar',
             },
             title: {
-              text: 'Максимальная температура'
+              text: 'Минимальная температура'
             },
             subtitle: {
               text: 'г. Москва'
@@ -80,8 +79,8 @@ export class LineComponent implements OnInit {
               categories: weatherDates
             },
             series: [{
-              name: 'Максимальная температура',
-              data: temp_max
+              name: 'Минимальная температура',
+              data: temp_min
             }],
           };
           this.loading = false;
@@ -117,4 +116,5 @@ export class LineComponent implements OnInit {
       }
     }
   }
+
 }
