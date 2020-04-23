@@ -1,0 +1,18 @@
+<div class="main">
+    <div class="row" *ngIf="WeatherData.isDay">
+        <mat-icon class="sun">wb_sunny</mat-icon>
+    </div>
+    <div class="row" *ngIf="!WeatherData.isDay">
+        <mat-icon class="moon">lens</mat-icon>
+    </div>
+    <div class="row cloudDiv">
+        <mat-icon class="cloud">cloud</mat-icon>
+    </div>
+
+    <div class="content">
+        <div class="temp">{{WeatherData.temp_celcius}}°</div>
+        <div class="name">{{WeatherData.name}}</div>
+        <div class="humidity">Влажность {{WeatherData.main.humidity}}%</div>
+        <div class="wind">Скорость ветра {{WeatherData.wind}} м/c</div>
+    </div>
+</div>

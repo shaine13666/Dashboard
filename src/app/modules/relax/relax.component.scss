@@ -1,0 +1,75 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+    height: 84vh;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(8, 7, 42, 1));
+    color: #ffffff;
+    margin: 0 auto;
+}
+
+.mat-icon.sun {
+    margin-top: 40px;
+    transform: translateX(-130px);
+    font-size: 300px;
+    color: yellow;
+    filter: drop-shadow(1px 1px 10px yellow);
+}
+.mat-icon.moon {
+    margin: 40px;
+    transform: translateX(-130px);
+    font-size: 300px;
+    color: white;
+    filter: drop-shadow(1px 1px 10px white);
+}
+
+.cloudDiv {
+    margin-top: -150px;
+}
+.mat-icon.cloud {
+    font-size: 200px;
+    color: rgba(104, 175, 197);
+    filter: drop-shadow(1px 1px 5px rgb(104, 175, 197));
+    animation-name: cloud;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.temp {
+    font-size: 80px;
+    margin-top: 36px;
+}
+.name {
+    font-size: 36px;
+    margin-top: 36px;
+}
+
+.humidity {
+    margin-top: 36px;
+    font-size: 16px;
+}
+.wind {
+    font-size: 16px;
+    margin-top: 16px;
+}
+
+@keyframes cloud {
+    from {
+        margin-left: -155px;
+    }
+    to {
+        margin-left: 65px;
+    }
+}
